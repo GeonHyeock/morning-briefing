@@ -1,46 +1,186 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>아침 투자·부동산 브리핑</title>
-<meta name="description" content="평일 아침 미국·국내 증시, 환율·금리, 수도권 부동산 브리핑">
+<meta name="description" content="평일 아침 주식·부동산·환율·금리 리포트. 최근 10일 흐름을 쉽게 풀어 설명합니다.">
 <meta property="og:title" content="아침 투자·부동산 브리핑">
-<meta property="og:description" content="평일 아침 증시·환율·금리·수도권 부동산 소식을 1분 분량으로 정리합니다.">
+<meta property="og:description" content="주식·부동산·환율·금리 세 챕터로 정리한 평일 아침 리포트">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f5f2;--card:#fff;--ink:#1d1d1f;--muted:#6b6b70;--line:#e4e2dc;--up:#d03b2f;--down:#1f5fbf;--accent:#0f6e5a;--chip:#eef4f1}
-@media (prefers-color-scheme:dark){:root{--bg:#141416;--card:#1e1e21;--ink:#ececee;--muted:#9a9aa1;--line:#2e2e33;--up:#ff6b5e;--down:#6aa3ff;--accent:#4cc3a3;--chip:#1f2a27}}
+:root{--bg:#f4f3ef;--paper:#fff;--ink:#16202c;--ink2:#3b4654;--muted:#6c7480;--line:#e2e0d9;--soft:#f7f6f2;--accent:#1d4e6b;--accent-soft:#e8f0f4;--up:#c8352b;--down:#1f5fbf;--serif:"Noto Serif KR","Apple SD Gothic Neo",serif}
+@media (prefers-color-scheme:dark){:root{--bg:#111418;--paper:#1a1e24;--ink:#e9ecef;--ink2:#c3c9d1;--muted:#8d96a1;--line:#2c323a;--soft:#20252c;--accent:#7fb6d6;--accent-soft:#1d2a33;--up:#ff6b5e;--down:#6aa3ff}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
-header{padding:28px 16px 8px;max-width:720px;margin:0 auto}
-header h1{margin:0;font-size:22px;letter-spacing:-.3px}
-header p{margin:6px 0 0;color:var(--muted);font-size:14px}
-main{max-width:720px;margin:0 auto;padding:8px 16px 40px}
-article{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:14px 0}
-article h2{margin:0 0 4px;font-size:19px}
-.date{color:var(--muted);font-size:13px}
-.summary{margin:12px 0 4px;padding:10px 12px;background:var(--chip);border-radius:10px;font-weight:600}
-h3{font-size:15px;margin:20px 0 8px;color:var(--accent)}
-table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
-th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
-th:first-child,td:first-child{text-align:left}
-th{color:var(--muted);font-weight:500;font-size:12.5px}
-td.note{white-space:normal;text-align:left;color:var(--muted);font-size:13px}
-.up{color:var(--up)}.down{color:var(--down)}
-ul{margin:8px 0 0;padding-left:18px}li{margin:3px 0}
-.check{border-left:3px solid var(--accent);padding:4px 0 4px 10px;margin:8px 0}
-.home{font-weight:600}
-.sources{font-size:13px}.sources a{color:var(--accent);word-break:break-all}
+html{scroll-padding-top:110px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%;word-break:keep-all}
+a{color:var(--accent)}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+.cover{padding:36px 16px 20px}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--muted);font-weight:600}
+.cover h1{font-family:var(--serif);font-size:30px;line-height:1.3;margin:6px 0 8px;letter-spacing:-.5px}
+.cover .lede{margin:0;color:var(--ink2);font-size:15px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 28px;margin:18px 0 0;padding:14px 0 0;border-top:1px solid var(--line)}
+.meta dt{font-size:12px;color:var(--muted)}
+.meta dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+.bar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.chap-nav,.date-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:8px 0}
+.chap-nav::-webkit-scrollbar,.date-tabs::-webkit-scrollbar{display:none}
+.chap-nav{padding-bottom:0}
+.chap-nav a{flex:0 0 auto;text-decoration:none;color:var(--ink2);font-size:14px;font-weight:600;padding:4px 10px;border-radius:8px}
+.chap-nav a span{color:var(--muted);font-weight:500;margin-right:4px;font-variant-numeric:tabular-nums}
+.chap-nav a:hover{background:var(--paper)}
+.date-tabs button{flex:0 0 auto;font:inherit;font-size:13px;padding:4px 11px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted);cursor:pointer;font-variant-numeric:tabular-nums}
+.date-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:600}
+.date-tabs button:focus-visible,.chap-nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{padding:8px 16px 40px}
+.block{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 18px;margin:16px 0}
+.block>h2,.chapter-head h2{font-family:var(--serif);font-size:21px;margin:0;letter-spacing:-.3px}
+.sub{color:var(--muted);font-size:13px;margin:2px 0 0}
+.chapter-head{display:flex;align-items:baseline;gap:12px;padding-bottom:12px;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.chapter-head .num{font-family:var(--serif);font-size:26px;color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+h3{font-size:16px;margin:24px 0 10px}
+h3 .tag{display:inline-block;font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 6px;margin-right:6px;vertical-align:2px}
+h4{font-size:14px;margin:16px 0 6px;color:var(--ink2)}
+ul,ol{margin:6px 0 0;padding-left:20px}li{margin:4px 0}
+.basis{font-size:13px;color:var(--muted);margin:2px 0 0}
+.headline ol{list-style:none;padding:0;margin:12px 0 0;counter-reset:n}
+.headline ol li{counter-increment:n;position:relative;padding:10px 12px 10px 42px;background:var(--soft);border-radius:10px;margin:6px 0;font-weight:600}
+.headline ol li::before{content:counter(n);position:absolute;left:12px;top:12px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--paper);font-size:12px;line-height:20px;text-align:center}
+.overview{margin-top:14px;padding:14px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0}
+.overview p{margin:0}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:4px 0 8px}
+@media (min-width:700px){.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--soft);min-width:0}
+.kpi .k{font-size:12px;color:var(--muted)}
+.kpi .v{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.3}
+.kpi .d{font-size:12px;font-variant-numeric:tabular-nums}
+.kpi .muted{color:var(--muted)}
+.kpi svg{display:block;width:100%;height:34px;margin-top:6px;color:var(--muted)}
+.kpi svg .up{color:var(--up)}.kpi svg .down{color:var(--down)}
+.trend{border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:12px}
+.trend-label{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.trend-head{font-size:17px;font-weight:700;margin:4px 0 2px;line-height:1.5}
+.terms{margin:14px 0 0;padding:12px;background:var(--soft);border-radius:10px;font-size:14px}
+.terms dt{font-weight:700}
+.terms dd{margin:0 0 8px;color:var(--ink2)}
+.terms dd:last-child{margin-bottom:0}
+.trend-basis{font-size:12px;color:var(--muted);margin:10px 0 0}
 .scroll{overflow-x:auto}
-footer{max-width:720px;margin:0 auto;padding:0 16px 32px;color:var(--muted);font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{color:var(--muted);font-weight:500;font-size:12.5px;border-bottom:1px solid var(--ink2)}
+th:first-child,td:first-child{text-align:left}
+td.note{white-space:normal;text-align:left;color:var(--muted);font-size:13px;min-width:160px}
+.up{color:var(--up)}.down{color:var(--down)}
+.empty{color:var(--muted);font-size:14px;margin:6px 0}
+.sources{font-size:13px}.sources a{word-break:break-all}
+footer{padding:8px 16px 40px;color:var(--muted);font-size:12px}
+.no-js .js-only{display:none}
+html:not(.no-js) #data{display:none}
+#data article{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
+@media print{.bar{display:none}.block{break-inside:avoid-page}}
 </style>
 </head>
 <body>
-<header>
+<header class="cover wrap">
+<div class="eyebrow">MORNING BRIEFING REPORT</div>
 <h1>아침 투자·부동산 브리핑</h1>
-<p>평일 아침 증시·환율·금리·수도권 부동산을 1분 분량으로 정리합니다. 최신 브리핑이 맨 위에 있습니다.</p>
+<p class="lede">평일 아침, 주식·부동산·환율·금리를 세 챕터로 정리합니다. 최근 10일의 흐름을 경제 용어가 낯선 분도 읽을 수 있게 풀어 씁니다.</p>
+<dl class="meta js-only">
+<div><dt>최신 발행</dt><dd id="m-latest">—</dd></div>
+<div><dt>수록 기간</dt><dd id="m-range">—</dd></div>
+<div><dt>수록 브리핑</dt><dd id="m-count">—</dd></div>
+</dl>
 </header>
-<main>
+
+<nav class="bar js-only" aria-label="리포트 탐색">
+<div class="wrap">
+<div class="chap-nav">
+<a href="#summary"><span>00</span>요약</a>
+<a href="#ch-stock"><span>01</span>주식</a>
+<a href="#ch-estate"><span>02</span>부동산</a>
+<a href="#ch-rates"><span>03</span>환율·금리</a>
+<a href="#ch-sources">출처</a>
+</div>
+<div class="date-tabs" id="date-tabs" role="tablist" aria-label="브리핑 날짜"></div>
+</div>
+</nav>
+
+<main class="wrap">
+<section id="summary" class="block js-only headline">
+<h2>오늘의 요약</h2>
+<div data-slot="basis"></div>
+<div data-slot="summary"></div>
+<div class="overview" data-slot="trend-overview"></div>
+<h3><span class="tag">일정</span>오늘 볼 일정</h3>
+<div data-slot="schedule"></div>
+</section>
+
+<section id="ch-stock" class="block js-only">
+<div class="chapter-head"><span class="num">01</span><div><h2>주식</h2><p class="sub">지수 · 수급 · 오늘의 종목</p></div></div>
+<div class="kpis" data-kpis="spx,ndx,kospi,kosdaq"></div>
+<div data-slot="trend-stock"></div>
+<h3><span class="tag">일별</span>상세 · <span class="sel-date"></span></h3>
+<div data-slot="stock"></div>
+</section>
+
+<section id="ch-estate" class="block js-only">
+<div class="chapter-head"><span class="num">02</span><div><h2>부동산</h2><p class="sub">수도권 시세 · 정책 · 청약</p></div></div>
+<div class="kpis" data-kpis="seoul-sale,gyeonggi-sale,incheon-sale,seoul-jeonse"></div>
+<div data-slot="trend-estate"></div>
+<h3><span class="tag">일별</span>상세 · <span class="sel-date"></span></h3>
+<div data-slot="estate"></div>
+</section>
+
+<section id="ch-rates" class="block js-only">
+<div class="chapter-head"><span class="num">03</span><div><h2>환율·금리</h2><p class="sub">원/달러 · 원/엔 · 미국·한국 국채</p></div></div>
+<div class="kpis" data-kpis="usdkrw,jpykrw,ust10y,ktb3y"></div>
+<div data-slot="trend-rates"></div>
+<h3><span class="tag">일별</span>상세 · <span class="sel-date"></span></h3>
+<div data-slot="rates"></div>
+</section>
+
+<section id="ch-sources" class="block js-only">
+<h2>출처 · <span class="sel-date"></span></h2>
+<div data-slot="sources"></div>
+</section>
+
+<!-- ===== 원본 데이터: 예약 작업은 TREND 블록과 BRIEFINGS 블록만 고칩니다. 위쪽 화면은 스크립트가 이 데이터로 자동 구성합니다. ===== -->
+<div id="data">
+
+<!-- TREND:START (수록된 브리핑 전체를 바탕으로 매 실행마다 통째로 다시 씀) -->
+<div id="trend" data-from="2026-10-13" data-to="2026-10-15" data-n="3">
+<section class="trend-part" data-ch="overview"><p>이 기간 한국 증시는 반도체주를 중심으로 크게 떨어졌고, 15일에는 코스피가 하루에 7.57% 빠졌어요. 미국 물가가 예상보다 높게 나와 금리 걱정이 커졌고, 원/달러 환율은 1,340원대를 오갔어요. 서울 집값은 계속 올랐어요.</p></section>
+<section class="trend-part" data-ch="stock">
+<div class="trend-label">쉽게 읽는 흐름</div>
+<p class="trend-head">반도체 걱정과 물가 충격으로 코스피가 6,035에서 5,554까지 내려왔어요.</p>
+<h4>무슨 일이 있었나</h4><ul><li>코스피는 13일 6,035.35(-5.46%)에서 15일 5,554.22(-7.57%)로 내려왔어요.</li><li>나스닥은 12일 27,245.90에서 14일 26,692.87로, S&amp;P500은 7,807.24에서 7,718.94로 내렸어요.</li><li>외국인은 15일에만 코스피에서 4조 원대를 순매도했고, 10월 누적은 17조 원대예요.</li></ul>
+<h4>왜 그랬나</h4><ul><li>중국 CXMT의 메모리 기술 추격 우려로 반도체주가 밀렸어요.</li><li>미국 9월 CPI가 전년 대비 3.7%로 예상(3.6%)보다 높아 금리 인상 걱정이 커졌어요.</li><li>미국 AI 인프라 기업의 자금 조달 부담도 부각됐어요.</li></ul>
+<h4>앞으로 볼 것</h4><ul><li>15일 밤 미국 PPI·소매판매, 16일 낮 12:30 워시 연준 의장 연설, 27~28일 FOMC를 지켜봐요.</li></ul>
+<dl class="terms"><dt>사이드카</dt><dd>지수가 갑자기 크게 움직일 때 프로그램 매매를 5분간 멈추는 장치예요.</dd><dt>서킷브레이커</dt><dd>지수가 8% 넘게 떨어지면 시장 거래 전체를 20분간 멈추는 제도예요.</dd></dl>
+</section>
+<section class="trend-part" data-ch="estate">
+<div class="trend-label">쉽게 읽는 흐름</div>
+<p class="trend-head">서울 집값은 88주 연속 오르고, 경기 남부가 더 빠르게 올랐어요.</p>
+<h4>무슨 일이 있었나</h4><ul><li>한국부동산원 10월 12일 기준 서울 매매는 +0.16%(전주 +0.12%), 경기는 +0.26%(전주 +0.18%)였어요.</li><li>서울 전세는 +0.18%(전주 +0.16%)였어요.</li></ul>
+<h4>왜 그랬나</h4><ul><li>강남3구는 내렸지만 중랑·성북 등 서울 외곽과 분당·군포 같은 경기 남부가 올랐어요.</li></ul>
+<h4>앞으로 볼 것</h4><ul><li>19일 인천·경기 무순위 청약 접수가 있어요(시티오씨엘 9단지, 의왕역 한신더휴).</li></ul>
+<dl class="terms"><dt>무순위 청약</dt><dd>계약되지 않은 집을 순위 없이 다시 신청받는 방식이에요.</dd><dt>전세가격</dt><dd>집값의 일부를 맡기고 빌려 사는 전세의 시세예요.</dd></dl>
+</section>
+<section class="trend-part" data-ch="rates">
+<div class="trend-label">쉽게 읽는 흐름</div>
+<p class="trend-head">환율은 1,340원대, 국고채 3년물은 3.8%대 후반에서 움직였어요.</p>
+<h4>무슨 일이 있었나</h4><ul><li>원/달러 주간 종가는 13일 1,345.1원, 14일 1,338.3원, 15일 1,344.6원이에요.</li><li>국고채 3년물은 13일 3.857%, 14일 3.883%, 15일 3.867%예요.</li></ul>
+<h4>왜 그랬나</h4><ul><li>미 CPI 충격과 국내 증시 급락 때 외국인 매도로 환율이 올랐어요.</li><li>증시가 급락하자 안전한 채권을 찾는 사람이 늘어 15일 국채 금리는 내렸어요.</li></ul>
+<h4>앞으로 볼 것</h4><ul><li>10월 27~28일 FOMC에서 연준이 금리를 어떻게 정할지 봐요. 한국은행 기준금리는 3.00%예요.</li></ul>
+<dl class="terms"><dt>bp(베이시스포인트)</dt><dd>금리 변화를 나타내는 단위로 1bp는 0.01%포인트예요.</dd><dt>안전자산</dt><dd>시장이 불안할 때 사람들이 찾는 국채 같은 자산이에요.</dd></dl>
+</section>
+</div>
+<!-- TREND:END -->
+
 <!-- BRIEFINGS:START (새 브리핑은 이 줄 바로 아래에 <article>로 추가) -->
 <article id="2026-10-15" class="day">
 <h2>10월 15일(목) 브리핑</h2>
@@ -88,43 +228,46 @@ footer{max-width:720px;margin:0 auto;padding:0 16px 32px;color:var(--muted);font
 <li><a href="https://mhb-blog.com/uiwang-station-hanshin-thehue-unranked-guide/">mhb-blog – 의왕역 한신더휴 무순위</a></li>
 </ul></div>
 </article>
-<article id="2026-10-14">
+<article id="2026-10-14" class="day">
 <h2>10월 14일(수) 브리핑</h2>
-<div class="date">미국 10/13(화) 종가(정상 거래) · 국내 10/13(화) 종가 (휴장 없음, 어제 브리핑 이후 국내 신규 장 없음)</div>
-<p class="summary">미 증시 소폭 하락, 반도체 5일 연속 약세<br>원/달러 1,345.1원(주간), 국고채 3년물 3.857%<br>오늘 밤 미국 9월 CPI 발표</p>
-<h3>증시</h3>
+<p class="basis">기준: 미국 10/13(화) 종가(정상 거래) · 국내 10/13(화) 종가 (휴장 없음, 직전 브리핑 이후 국내 신규 장 없음)</p>
+<div class="part" data-ch="summary"><ol>
+<li>미 증시 소폭 하락, 반도체 5일 연속 약세</li>
+<li>원/달러 1,345.1원(주간), 국고채 3년물 3.857%</li>
+<li>오늘 밤 미국 9월 CPI 발표</li>
+</ol></div>
+<div class="part" data-ch="stock">
 <div class="scroll"><table><tr><th>지수</th><th>종가</th><th>등락률</th></tr>
-<tr><td>S&amp;P500 (10/13)</td><td>7,805.45</td><td class="down">-0.02%</td></tr>
-<tr><td>나스닥 (10/13)</td><td>27,204.38</td><td class="down">-0.15%</td></tr>
-<tr><td>코스피 (10/13)</td><td>6,035.35</td><td class="down">-5.46%</td></tr>
-<tr><td>코스닥 (10/13)</td><td>837.03</td><td class="down">-1.43%</td></tr></table></div>
+<tr data-k="spx" data-d="2026-10-13" data-v="7805.45"><td>S&amp;P500 (10/13)</td><td>7,805.45</td><td class="down">-0.02%</td></tr>
+<tr data-k="ndx" data-d="2026-10-13" data-v="27204.38"><td>나스닥 (10/13)</td><td>27,204.38</td><td class="down">-0.15%</td></tr>
+<tr data-k="kospi" data-d="2026-10-13" data-v="6035.35"><td>코스피 (10/13)</td><td>6,035.35</td><td class="down">-5.46%</td></tr>
+<tr data-k="kosdaq" data-d="2026-10-13" data-v="837.03"><td>코스닥 (10/13)</td><td>837.03</td><td class="down">-1.43%</td></tr></table></div>
 <ul>
 <li>미국: 중국 CXMT의 메모리 기술 진전 소식으로 반도체주 약세가 이어졌고(필라델피아 반도체지수 5거래일 연속 하락), 3분기 대형 은행 실적이 엇갈렸습니다. 다우는 51,670.10(-0.35%). 뉴욕 연은 총재와 연준 이사 발언이 낙폭을 제한했습니다.</li>
 <li>코스피 수급(13일): 외국인 4조 5,128억 원 순매도(매체별로 최대 5.15조 원), 기관 1조 7,679억 원·개인 2조 9,096억 원 순매수.</li>
 </ul>
-<h3>오늘의 종목</h3>
+<h4>오늘의 종목</h4>
 <ul>
 <li>마이크론 <span class="down">-3.62%</span>, 어플라이드 머티리얼즈 <span class="down">-6.69%</span>: CXMT 소식과 장비 업황 전망 발표 보류.</li>
 <li>메타 <span class="up">+2.63%</span>: 새 AI 모델 공개 이후 상승세 지속.</li>
 <li>씨티그룹 <span class="down">-5.59%</span>: 3분기 실적 발표 후 시총 상위 은행 중 낙폭 최대.</li>
 </ul>
-<h3>환율·금리</h3>
-<div class="scroll"><table><tr><th>항목</th><th>수치</th><th>비고</th></tr>
-<tr><td>원/달러(주간 종가)</td><td>1,345.1원</td><td class="note">13일 15:30, 전일 대비 +10.0원. 서울 야간 종가는 확인 불가(뉴욕 시간 호가 1,341원 안팎, 한 매체 기준)</td></tr>
-<tr><td>원/100엔(15:30)</td><td>849.44원</td><td class="note">13일, 전일 대비 +5.78원</td></tr>
-<tr><td>미 10년물</td><td>5.21%</td><td class="note">-3.1bp, 한 매체 기준(다른 매체는 장중 5.19%대)</td></tr>
-<tr><td>국고채 3년물</td><td>3.857%</td><td class="note">13일, -6.4bp. 10년물 4.229%(-7.7bp)</td></tr></table></div>
-<h3>수도권 부동산</h3>
-<ul>
+</div>
+<div class="part" data-ch="estate"><ul>
 <li>쌍용 더 플래티넘 한강(경기 양평군 양서면 용담리, 333세대): 14일 일반공급 2순위 접수(12일 특별공급, 13일 1순위). 분양가 74㎡ 5.5억~6.1억 원, 84㎡ 5.87억~7.48억 원. 특별공급에 생애최초 20·신혼부부 44·신생아 29세대 포함.</li>
-</ul>
-<h3>오늘 일정</h3>
-<ul>
+</ul></div>
+<div class="part" data-ch="rates">
+<div class="scroll"><table><tr><th>항목</th><th>수치</th><th>비고</th></tr>
+<tr data-k="usdkrw" data-d="2026-10-13" data-v="1345.1"><td>원/달러(주간 종가)</td><td>1,345.1원</td><td class="note">13일 15:30, 전일 대비 +10.0원. 서울 야간 종가는 확인 불가(뉴욕 시간 호가 1,341원 안팎, 한 매체 기준)</td></tr>
+<tr data-k="jpykrw" data-d="2026-10-13" data-v="849.44"><td>원/100엔(15:30)</td><td>849.44원</td><td class="note">13일, 전일 대비 +5.78원</td></tr>
+<tr data-k="ust10y" data-d="2026-10-13" data-v="5.21"><td>미 10년물</td><td>5.21%</td><td class="note">-3.1bp, 한 매체 기준(다른 매체는 장중 5.19%대)</td></tr>
+<tr data-k="ktb3y" data-d="2026-10-13" data-v="3.857"><td>국고채 3년물</td><td>3.857%</td><td class="note">13일, -6.4bp. 10년물 4.229%(-7.7bp)</td></tr></table></div>
+</div>
+<div class="part" data-ch="schedule"><ul>
 <li>오늘 밤(14일): 미국 9월 소비자물가지수(CPI). 15일 PPI.</li>
 <li>이번 주: 뱅크오브아메리카·모건스탠리 등 대형 은행 3분기 실적 발표 계속.</li>
-</ul>
-<h3>출처</h3>
-<ul class="sources">
+</ul></div>
+<div class="part" data-ch="sources"><ul class="sources">
 <li><a href="https://www.newspim.com/news/view/20261014000021">뉴스핌 – 뉴욕증시 마감</a></li>
 <li><a href="https://www.blockmedia.co.kr/archives/1151163">블록미디어 – 뉴욕증시 마감</a></li>
 <li><a href="https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202610140008">한국경제TV – 글로벌 마감 시황</a></li>
@@ -133,46 +276,49 @@ footer{max-width:720px;margin:0 auto;padding:0 16px 32px;color:var(--muted);font
 <li><a href="https://www.newsis.com/view/NISX20261013_0003824253">뉴시스 – 원·달러 환율 마감</a></li>
 <li><a href="https://etoday.co.kr/news/view/2635353">이투데이 – 채권마감</a></li>
 <li><a href="https://www.wikitree.co.kr/articles/1165261">위키트리 – 쌍용 더 플래티넘 한강</a></li>
-</ul>
+</ul></div>
 </article>
-<article id="2026-10-13">
+<article id="2026-10-13" class="day">
 <h2>10월 13일(화) 브리핑</h2>
-<div class="date">미국 10/12(월) 종가(콜럼버스의 날: 주식 정상 거래, 채권 휴장) · 국내 10/13(화) 종가 (휴장 없음)</div>
-<p class="summary">코스피 -5.46%(6,035), 외국인 4.5조 순매도·매도 사이드카<br>원/달러 1,345.1원(주간), 국고채 3년물 3.857%로 하락<br>오늘 밤 미 대형 은행 실적, 14일 9월 CPI</p>
-<h3>증시</h3>
+<p class="basis">기준: 미국 10/12(월) 종가(콜럼버스의 날: 주식 정상 거래, 채권 휴장) · 국내 10/13(화) 종가 (휴장 없음)</p>
+<div class="part" data-ch="summary"><ol>
+<li>코스피 -5.46%(6,035), 외국인 4.5조 순매도·매도 사이드카</li>
+<li>원/달러 1,345.1원(주간), 국고채 3년물 3.857%로 하락</li>
+<li>오늘 밤 미 대형 은행 실적, 14일 9월 CPI</li>
+</ol></div>
+<div class="part" data-ch="stock">
 <div class="scroll"><table><tr><th>지수</th><th>종가</th><th>등락률</th></tr>
-<tr><td>S&amp;P500 (10/12)</td><td>7,807.24</td><td class="down">-0.06%</td></tr>
-<tr><td>나스닥 (10/12)</td><td>27,245.90</td><td class="down">-0.44%</td></tr>
-<tr><td>코스피 (10/13)</td><td>6,035.35</td><td class="down">-5.46%</td></tr>
-<tr><td>코스닥 (10/13)</td><td>837.03</td><td class="down">-1.43%</td></tr></table></div>
+<tr data-k="spx" data-d="2026-10-12" data-v="7807.24"><td>S&amp;P500 (10/12)</td><td>7,807.24</td><td class="down">-0.06%</td></tr>
+<tr data-k="ndx" data-d="2026-10-12" data-v="27245.90"><td>나스닥 (10/12)</td><td>27,245.90</td><td class="down">-0.44%</td></tr>
+<tr data-k="kospi" data-d="2026-10-13" data-v="6035.35"><td>코스피 (10/13)</td><td>6,035.35</td><td class="down">-5.46%</td></tr>
+<tr data-k="kosdaq" data-d="2026-10-13" data-v="837.03"><td>코스닥 (10/13)</td><td>837.03</td><td class="down">-1.43%</td></tr></table></div>
 <ul>
 <li>미국: 사우디 리야드 공항 피격 여파로 유가가 3거래일 연속 올랐고(브렌트 106.65달러), 중국 CXMT의 D램 기술 진전 소식에 메모리 반도체주가 밀렸습니다. 다우는 51,850.55(+0.38%)로 올랐습니다. S&amp;P500 수치는 한 매체 기준입니다.</li>
 <li>한국: 같은 반도체 우려와 외국인 매도로 오전 9시 47분 매도 사이드카가 발동됐고 5거래일 연속 하락했습니다. 5% 이상 하락 마감은 8월 19일 이후 처음입니다.</li>
 <li>코스피 수급: 외국인 4조 5,128억 원 순매도, 기관 1조 6,903억 원·개인 2조 2,271억 원 순매수(매체별로 외국인 순매도 금액이 4.5조~5.15조 원으로 다르게 보도됨).</li>
 </ul>
-<h3>오늘의 종목</h3>
+<h4>오늘의 종목</h4>
 <ul>
 <li>SK하이닉스 <span class="down">-10.09%</span>(144만 3,000원), 삼성전자 <span class="down">-7.39%</span>(23만 2,000원): 메모리 경쟁 심화 우려와 삼성전자 자사주 매입 종료에 따른 수급 부담.</li>
 <li>마이크론 <span class="down">-3.88%</span>(미국, 10/12): 중국 CXMT 소식. 엔비디아·브로드컴·AMD도 2% 안팎 하락, 필라델피아 반도체지수 -2.60%.</li>
 </ul>
-<h3>환율·금리</h3>
+</div>
+<div class="part" data-ch="estate"><p class="empty">새 소식 없음</p></div>
+<div class="part" data-ch="rates">
 <div class="scroll"><table><tr><th>항목</th><th>수치</th><th>비고</th></tr>
-<tr><td>원/달러(주간 종가)</td><td>1,345.1원</td><td class="note">전일 대비 +10.0원, 중동 긴장·증시 급락</td></tr>
-<tr><td>원/100엔(15:30)</td><td>849.44원</td><td class="note">전일 대비 +5.78원, 장중 839.91원까지 하락</td></tr>
+<tr data-k="usdkrw" data-d="2026-10-13" data-v="1345.1"><td>원/달러(주간 종가)</td><td>1,345.1원</td><td class="note">전일 대비 +10.0원, 중동 긴장·증시 급락</td></tr>
+<tr data-k="jpykrw" data-d="2026-10-13" data-v="849.44"><td>원/100엔(15:30)</td><td>849.44원</td><td class="note">전일 대비 +5.78원, 장중 839.91원까지 하락</td></tr>
 <tr><td>미 10년물</td><td>확인 불가</td><td class="note">10/12 미 채권시장 휴장, 직전 거래일(10/9) 수치는 본문 미확인</td></tr>
-<tr><td>국고채 3년물</td><td>3.857%</td><td class="note">-6.4bp, 8/31 이후 최저</td></tr></table></div>
+<tr data-k="ktb3y" data-d="2026-10-13" data-v="3.857"><td>국고채 3년물</td><td>3.857%</td><td class="note">-6.4bp, 8/31 이후 최저</td></tr></table></div>
 <ul>
 <li>한국은행 기준금리는 3.00%. 연준은 지난달 정책금리를 3.75~4%로 올렸고, 시장은 10월 27~28일 FOMC 동결·12월 인상을 예상합니다(시장 전망).</li>
 </ul>
-<h3>수도권 부동산</h3>
-<p>새 소식 없음</p>
-<h3>오늘 일정</h3>
-<ul>
+</div>
+<div class="part" data-ch="schedule"><ul>
 <li>오늘 밤(13일): JP모간·골드만삭스·씨티그룹·웰스파고 실적 발표.</li>
 <li>14일 밤: 미국 9월 CPI(전년 대비 3.6% 예상). 15일 PPI, 15일 워시 연준 의장 IMF 대담.</li>
-</ul>
-<h3>출처</h3>
-<ul class="sources">
+</ul></div>
+<div class="part" data-ch="sources"><ul class="sources">
 <li><a href="https://www.newspim.com/news/view/20261013001034">뉴스핌 – 코스피 마감시황</a></li>
 <li><a href="https://www.seoul.co.kr/news/economy/securities/2026/10/13/20261013500225">서울신문 – 코스피 마감시황</a></li>
 <li><a href="https://www.sentv.co.kr/article/view/sentv202610130010">SEN – 뉴욕증시 마감</a></li>
@@ -180,39 +326,114 @@ footer{max-width:720px;margin:0 auto;padding:0 16px 32px;color:var(--muted);font
 <li><a href="https://www.betanews.net/article/view/beta202610130131">베타뉴스 – 원·달러, 원·엔 환율</a></li>
 <li><a href="https://etoday.co.kr/news/view/2635353">이투데이 – 채권마감</a></li>
 <li><a href="https://www.newspim.com/news/view/20261012000483">뉴스핌 – 뉴욕 주간 프리뷰</a></li>
-</ul>
+</ul></div>
 </article>
 <!-- BRIEFINGS:END -->
-<!-- TREND:START -->
-<div id="trend" data-from="2026-10-13" data-to="2026-10-15" data-n="3">
-<section class="trend-part" data-ch="overview"><p>이 기간 한국 증시는 반도체주를 중심으로 크게 떨어졌고, 15일에는 코스피가 하루에 7.57% 빠졌어요. 미국 물가가 예상보다 높게 나와 금리 걱정이 커졌고, 원/달러 환율은 1,340원대를 오갔어요. 서울 집값은 계속 올랐어요.</p></section>
-<section class="trend-part" data-ch="stock">
-<div class="trend-label">쉽게 읽는 흐름</div>
-<p class="trend-head">반도체 걱정과 물가 충격으로 코스피가 6,035에서 5,554까지 내려왔어요.</p>
-<h4>무슨 일이 있었나</h4><ul><li>코스피는 13일 6,035.35(-5.46%)에서 15일 5,554.22(-7.57%)로 내려왔어요.</li><li>나스닥은 12일 27,245.90에서 14일 26,692.87로, S&amp;P500은 7,807.24에서 7,718.94로 내렸어요.</li><li>외국인은 15일에만 코스피에서 4조 원대를 순매도했고, 10월 누적은 17조 원대예요.</li></ul>
-<h4>왜 그랬나</h4><ul><li>중국 CXMT의 메모리 기술 추격 우려로 반도체주가 밀렸어요.</li><li>미국 9월 CPI가 전년 대비 3.7%로 예상(3.6%)보다 높아 금리 인상 걱정이 커졌어요.</li><li>미국 AI 인프라 기업의 자금 조달 부담도 부각됐어요.</li></ul>
-<h4>앞으로 볼 것</h4><ul><li>15일 밤 미국 PPI·소매판매, 16일 낮 12:30 워시 연준 의장 연설, 27~28일 FOMC를 지켜봐요.</li></ul>
-<dl class="terms"><dt>사이드카</dt><dd>지수가 갑자기 크게 움직일 때 프로그램 매매를 5분간 멈추는 장치예요.</dd><dt>서킷브레이커</dt><dd>지수가 8% 넘게 떨어지면 시장 거래 전체를 20분간 멈추는 제도예요.</dd></dl>
-</section>
-<section class="trend-part" data-ch="estate">
-<div class="trend-label">쉽게 읽는 흐름</div>
-<p class="trend-head">서울 집값은 88주 연속 오르고, 경기 남부가 더 빠르게 올랐어요.</p>
-<h4>무슨 일이 있었나</h4><ul><li>한국부동산원 10월 12일 기준 서울 매매는 +0.16%(전주 +0.12%), 경기는 +0.26%(전주 +0.18%)였어요.</li><li>서울 전세는 +0.18%(전주 +0.16%)였어요.</li></ul>
-<h4>왜 그랬나</h4><ul><li>강남3구는 내렸지만 중랑·성북 등 서울 외곽과 분당·군포 같은 경기 남부가 올랐어요.</li></ul>
-<h4>앞으로 볼 것</h4><ul><li>19일 인천·경기 무순위 청약 접수가 있어요(시티오씨엘 9단지, 의왕역 한신더휴).</li></ul>
-<dl class="terms"><dt>무순위 청약</dt><dd>계약되지 않은 집을 순위 없이 다시 신청받는 방식이에요.</dd><dt>전세가격</dt><dd>집값의 일부를 맡기고 빌려 사는 전세의 시세예요.</dd></dl>
-</section>
-<section class="trend-part" data-ch="rates">
-<div class="trend-label">쉽게 읽는 흐름</div>
-<p class="trend-head">환율은 1,340원대, 국고채 3년물은 3.8%대 후반에서 움직였어요.</p>
-<h4>무슨 일이 있었나</h4><ul><li>원/달러 주간 종가는 13일 1,345.1원, 14일 1,338.3원, 15일 1,344.6원이에요.</li><li>국고채 3년물은 13일 3.857%, 14일 3.883%, 15일 3.867%예요.</li></ul>
-<h4>왜 그랬나</h4><ul><li>미 CPI 충격과 국내 증시 급락 때 외국인 매도로 환율이 올랐어요.</li><li>증시가 급락하자 안전한 채권을 찾는 사람이 늘어 15일 국채 금리는 내렸어요.</li></ul>
-<h4>앞으로 볼 것</h4><ul><li>10월 27~28일 FOMC에서 연준이 금리를 어떻게 정할지 봐요. 한국은행 기준금리는 3.00%예요.</li></ul>
-<dl class="terms"><dt>bp(베이시스포인트)</dt><dd>금리 변화를 나타내는 단위로 1bp는 0.01%포인트예요.</dd><dt>안전자산</dt><dd>시장이 불안할 때 사람들이 찾는 국채 같은 자산이에요.</dd></dl>
-</section>
 </div>
-<!-- TREND:END -->
 </main>
-<footer>AI가 공개 기사를 바탕으로 자동 작성한 참고 자료이며 투자 권유나 자문이 아닙니다. 중요한 판단 전에는 원문과 공식 자료를 확인해 주세요.</footer>
+
+<footer class="wrap">AI가 공개 기사를 바탕으로 자동 작성한 참고 자료이며 투자 권유나 자문이 아닙니다. 수치에 오류가 있을 수 있으니 중요한 판단 전에는 원문과 공식 자료를 확인해 주세요.</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var arts=[].slice.call(document.querySelectorAll('#data article.day[id]'));
+  if(!arts.length)return;
+  root.classList.remove('no-js');
+  var W='일월화수목금토';
+  function fmt(id){var p=String(id).split('-');var d=new Date(+p[0],p[1]-1,+p[2]);return isNaN(d)?id:(d.getMonth()+1)+'/'+d.getDate()+'('+W[d.getDay()]+')';}
+  function $(s){return document.querySelector(s);}
+  function $$(s){return [].slice.call(document.querySelectorAll(s));}
+
+  // 1) 원본 브리핑의 각 부분을 챕터 칸으로 옮김
+  arts.forEach(function(a){
+    var basis=a.querySelector('.basis');
+    if(basis){basis.classList.add('part');basis.setAttribute('data-ch','basis');}
+    [].slice.call(a.querySelectorAll('.part[data-ch]')).forEach(function(p){
+      var slot=$('[data-slot="'+p.getAttribute('data-ch')+'"]');
+      if(!slot)return;
+      p.setAttribute('data-date',a.id);slot.appendChild(p);
+    });
+  });
+
+  // 2) 흐름 해설을 각 챕터로 옮김
+  var trend=$('#trend');
+  $$('#trend .trend-part[data-ch]').forEach(function(t){
+    var ch=t.getAttribute('data-ch'),slot=$('[data-slot="trend-'+ch+'"]');
+    if(!slot)return;
+    if(ch!=='overview'){
+      t.classList.add('trend');
+      var b=document.createElement('p');b.className='trend-basis';
+      b.textContent='최근 '+trend.getAttribute('data-n')+'개 브리핑('+fmt(trend.getAttribute('data-from'))+' ~ '+fmt(trend.getAttribute('data-to'))+') 기준 해설';
+      t.appendChild(b);
+    }
+    slot.appendChild(t);
+  });
+  $$('[data-slot^="trend-"]').forEach(function(s){if(!s.children.length)s.hidden=true;});
+
+  // 3) 표지 정보
+  $('#m-latest').textContent=fmt(arts[0].id);
+  $('#m-range').textContent=fmt(arts[arts.length-1].id)+' ~ '+fmt(arts[0].id);
+  $('#m-count').textContent=arts.length+'개 (최대 10개)';
+
+  // 4) 지표 카드: 표의 data-k 값으로 시계열을 만들어 표시
+  var LABEL={spx:'S&P500',ndx:'나스닥',kospi:'코스피',kosdaq:'코스닥',usdkrw:'원/달러',jpykrw:'원/100엔',ust10y:'미 10년물',ktb3y:'국고채 3년','seoul-sale':'서울 매매','gyeonggi-sale':'경기 매매','incheon-sale':'인천 매매','seoul-jeonse':'서울 전세'};
+  var UNIT={usdkrw:'원',jpykrw:'원',ust10y:'%',ktb3y:'%','seoul-sale':'wk','gyeonggi-sale':'wk','incheon-sale':'wk','seoul-jeonse':'wk'};
+  var S={};
+  $$('tr[data-k][data-d][data-v]').forEach(function(r){
+    var k=r.getAttribute('data-k'),d=r.getAttribute('data-d'),v=parseFloat(r.getAttribute('data-v'));
+    if(isNaN(v))return;S[k]=S[k]||{};if(!(d in S[k]))S[k][d]=v;
+  });
+  function num(v,u){var s=v.toLocaleString('ko-KR',{maximumFractionDigits:u==='%'?3:2});return u==='wk'?((v>0?'+':'')+s+'%'):(u==='%'?s+'%':(u==='원'?s+'원':s));}
+  function spark(vals,cls){
+    if(vals.length<2)return '';
+    var mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals),rg=(mx-mn)||1;
+    var xy=vals.map(function(v,i){return [(i*100/(vals.length-1)).toFixed(1),(28-(v-mn)/rg*26).toFixed(1)];});
+    var last=xy[xy.length-1];
+    return '<svg viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><g class="'+cls+'"><polyline points="'+xy.map(function(p){return p.join(',');}).join(' ')+'" fill="none" stroke="currentColor" stroke-width="1.6" vector-effect="non-scaling-stroke"/></g></svg>';
+  }
+  $$('[data-kpis]').forEach(function(box){
+    var html='';
+    box.getAttribute('data-kpis').split(',').forEach(function(k){
+      var m=S[k];if(!m)return;
+      var ds=Object.keys(m).sort(),vals=ds.map(function(d){return m[d];});
+      var u=UNIT[k]||'',first=vals[0],last=vals[vals.length-1],chg='',cls='';
+      if(u==='wk'){cls=last>0?'up':(last<0?'down':'');}
+      else if(vals.length>1){
+        if(u==='%'){var bp=(last-first)*100;cls=bp>0?'up':(bp<0?'down':'');chg=(bp>0?'+':'')+bp.toFixed(1)+'bp';}
+        else{var pc=(last/first-1)*100;cls=pc>0?'up':(pc<0?'down':'');chg=(pc>0?'+':'')+pc.toFixed(2)+'%';}
+      }
+      var foot=chg?'<span class="'+cls+'">'+chg+'</span> <span class="muted">'+fmt(ds[0])+'→'+fmt(ds[ds.length-1])+'</span>':'<span class="muted">'+fmt(ds[ds.length-1])+(u==='wk'?' 주간 변동':' 기준')+'</span>';
+      html+='<div class="kpi"><div class="k">'+(LABEL[k]||k)+'</div><div class="v'+(u==='wk'?' '+cls:'')+'">'+num(last,u)+'</div><div class="d">'+foot+'</div>'+spark(vals,cls)+'</div>';
+    });
+    if(html)box.innerHTML=html;else box.hidden=true;
+  });
+
+  // 5) 날짜 탭
+  var tabs=$('#date-tabs');
+  var btns=arts.map(function(a){
+    var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=fmt(a.id);
+    b.addEventListener('click',function(){show(a.id,true);});tabs.appendChild(b);return b;
+  });
+  var slots=$$('[data-slot]').filter(function(s){return !/^trend-/.test(s.getAttribute('data-slot'));});
+  function show(id,push){
+    var i=0;arts.forEach(function(a,j){if(a.id===id)i=j;});id=arts[i].id;
+    $$('.part[data-date]').forEach(function(p){p.hidden=p.getAttribute('data-date')!==id;});
+    slots.forEach(function(s){
+      var has=[].slice.call(s.children).some(function(c){return c.classList.contains('part')&&!c.hidden;});
+      var e=s.querySelector('.slot-empty');
+      if(!has&&!e){e=document.createElement('p');e.className='empty slot-empty';e.textContent='이날 기록 없음';s.appendChild(e);}
+      if(e)e.hidden=has;
+    });
+    btns.forEach(function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');});
+    $$('.sel-date').forEach(function(s){s.textContent=fmt(id);});
+    if(push&&history.replaceState)history.replaceState(null,'','#'+id);
+    btns[i].scrollIntoView({block:'nearest',inline:'nearest'});
+  }
+  function fromHash(){var h=decodeURIComponent(location.hash.slice(1));return /^\d{4}-\d{2}-\d{2}$/.test(h)?h:null;}
+  show(fromHash()||arts[0].id,false);
+  window.addEventListener('hashchange',function(){var h=fromHash();if(h)show(h,false);});
+})();
+</script>
 </body>
 </html>
