@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>아침 투자·부동산 브리핑</title>
-<meta name="description" content="평일 아침 주식·부동산·환율·금리 리포트. 최근 10일 흐름을 쉽게 풀어 설명합니다.">
+<meta name="description" content="평일 아침 주식·부동산·환율·금리 리포트. 최근 2주 흐름을 쉽게 풀어 설명합니다.">
 <meta property="og:title" content="아침 투자·부동산 브리핑">
 <meta property="og:description" content="주식·부동산·환율·금리 세 챕터로 정리한 평일 아침 리포트">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,9 +46,9 @@ h3 .tag{display:inline-block;font-size:11px;font-weight:600;color:var(--accent);
 h4{font-size:14px;margin:16px 0 6px;color:var(--ink2)}
 ul,ol{margin:6px 0 0;padding-left:20px}li{margin:4px 0}
 .basis{font-size:13px;color:var(--muted);margin:2px 0 0}
-.headline ol{list-style:none;padding:0;margin:12px 0 0;counter-reset:n}
-.headline ol li{counter-increment:n;position:relative;padding:10px 12px 10px 42px;background:var(--soft);border-radius:10px;margin:6px 0;font-weight:600}
-.headline ol li::before{content:counter(n);position:absolute;left:12px;top:12px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--paper);font-size:12px;line-height:20px;text-align:center}
+.headline ol,.study-block [data-ch="summary"] ol{list-style:none;padding:0;margin:12px 0 0;counter-reset:n}
+.headline ol li,.study-block [data-ch="summary"] ol li{counter-increment:n;position:relative;padding:10px 12px 10px 42px;background:var(--soft);border-radius:10px;margin:6px 0;font-weight:600}
+.headline ol li::before,.study-block [data-ch="summary"] ol li::before{content:counter(n);position:absolute;left:12px;top:12px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--paper);font-size:12px;line-height:20px;text-align:center}
 .overview{margin-top:14px;padding:14px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0}
 .overview p{margin:0}
 .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:4px 0 8px}
@@ -81,6 +81,33 @@ footer{padding:8px 16px 40px;color:var(--muted);font-size:12px}
 .no-js .js-only{display:none}
 html:not(.no-js) #data{display:none}
 #data article{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
+/* 휴일 공부 */
+:root{--estate:#2f6b3f;--estate-soft:#e9f2ea}
+@media (prefers-color-scheme:dark){:root{--estate:#8cc79a;--estate-soft:#1d2a20}}
+.mode-study .weekday-only{display:none!important}
+body:not(.mode-study) .study-only{display:none!important}
+.date-tabs button.study-tab{border-style:dashed}
+.date-tabs button.study-tab[aria-selected="true"]{border-style:solid}
+.study-intro h2{font-family:var(--serif);font-size:21px;margin:0}
+.study-block>.part>h3:first-child{margin-top:4px}
+.week-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px}
+@media (min-width:700px){.week-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.week-grid>div{background:var(--soft);border-radius:10px;padding:12px}
+.week-grid h4{margin:0 0 4px}
+.week-grid p{margin:0;font-size:14px;color:var(--ink2)}
+.card{border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:16px 0;background:var(--paper)}
+.card-kind{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;color:var(--accent);background:var(--accent-soft)}
+.card[data-kind="estate"] .card-kind{color:var(--estate);background:var(--estate-soft)}
+.card h3{font-family:var(--serif);font-size:19px;margin:10px 0 4px;line-height:1.45}
+.card-q{margin:0 0 6px;color:var(--muted);font-size:14px}
+.card .glance{margin:10px 0 0;padding:12px 12px 12px 30px;background:var(--soft);border-radius:10px}
+.quiz{margin-top:16px;padding:14px;border:1px dashed var(--accent);border-radius:12px}
+.card[data-kind="estate"] .quiz{border-color:var(--estate)}
+.quiz-q{margin:0 0 6px;font-weight:600}
+.quiz-q b{color:var(--accent);margin-right:6px}
+.quiz .choices{margin:4px 0 8px}
+.quiz details summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:14px}
+.quiz details p{margin:8px 0 0}
 @media print{.bar{display:none}.block{break-inside:avoid-page}}
 </style>
 </head>
@@ -88,7 +115,7 @@ html:not(.no-js) #data{display:none}
 <header class="cover wrap">
 <div class="eyebrow">MORNING BRIEFING REPORT</div>
 <h1>아침 투자·부동산 브리핑</h1>
-<p class="lede">평일 아침, 주식·부동산·환율·금리를 세 챕터로 정리합니다. 최근 10일의 흐름을 경제 용어가 낯선 분도 읽을 수 있게 풀어 씁니다.</p>
+<p class="lede">평일 아침에는 주식·부동산·환율·금리를 세 챕터로 정리하고, 휴일(주말·공휴일)에는 지난 며칠을 돌아보며 공부 카드를 펼칩니다. 경제 용어가 낯선 분도 읽을 수 있게 풀어 씁니다.</p>
 <dl class="meta js-only">
 <div><dt>최신 발행</dt><dd id="m-latest">—</dd></div>
 <div><dt>수록 기간</dt><dd id="m-range">—</dd></div>
@@ -99,10 +126,11 @@ html:not(.no-js) #data{display:none}
 <nav class="bar js-only" aria-label="리포트 탐색">
 <div class="wrap">
 <div class="chap-nav">
-<a href="#summary"><span>00</span>요약</a>
-<a href="#ch-stock"><span>01</span>주식</a>
-<a href="#ch-estate"><span>02</span>부동산</a>
-<a href="#ch-rates"><span>03</span>환율·금리</a>
+<a href="#summary" class="weekday-only"><span>00</span>요약</a>
+<a href="#ch-stock" class="weekday-only"><span>01</span>주식</a>
+<a href="#ch-estate" class="weekday-only"><span>02</span>부동산</a>
+<a href="#ch-rates" class="weekday-only"><span>03</span>환율·금리</a>
+<a href="#study" class="study-only"><span>H</span>휴일 공부</a>
 <a href="#ch-sources">출처</a>
 </div>
 <div class="date-tabs" id="date-tabs" role="tablist" aria-label="브리핑 날짜"></div>
@@ -110,7 +138,7 @@ html:not(.no-js) #data{display:none}
 </nav>
 
 <main class="wrap">
-<section id="summary" class="block js-only headline">
+<section id="summary" class="block js-only headline weekday-only">
 <h2>오늘의 요약</h2>
 <div data-slot="basis"></div>
 <div data-slot="summary"></div>
@@ -119,7 +147,7 @@ html:not(.no-js) #data{display:none}
 <div data-slot="schedule"></div>
 </section>
 
-<section id="ch-stock" class="block js-only">
+<section id="ch-stock" class="block js-only weekday-only">
 <div class="chapter-head"><span class="num">01</span><div><h2>주식</h2><p class="sub">지수 · 수급 · 오늘의 종목</p></div></div>
 <div class="kpis" data-kpis="spx,ndx,kospi,kosdaq"></div>
 <div data-slot="trend-stock"></div>
@@ -127,7 +155,7 @@ html:not(.no-js) #data{display:none}
 <div data-slot="stock"></div>
 </section>
 
-<section id="ch-estate" class="block js-only">
+<section id="ch-estate" class="block js-only weekday-only">
 <div class="chapter-head"><span class="num">02</span><div><h2>부동산</h2><p class="sub">수도권 시세 · 정책 · 청약</p></div></div>
 <div class="kpis" data-kpis="seoul-sale,gyeonggi-sale,incheon-sale,seoul-jeonse"></div>
 <div data-slot="trend-estate"></div>
@@ -135,12 +163,17 @@ html:not(.no-js) #data{display:none}
 <div data-slot="estate"></div>
 </section>
 
-<section id="ch-rates" class="block js-only">
+<section id="ch-rates" class="block js-only weekday-only">
 <div class="chapter-head"><span class="num">03</span><div><h2>환율·금리</h2><p class="sub">원/달러 · 원/엔 · 미국·한국 국채</p></div></div>
 <div class="kpis" data-kpis="usdkrw,jpykrw,ust10y,ktb3y"></div>
 <div data-slot="trend-rates"></div>
 <h3><span class="tag">일별</span>상세 · <span class="sel-date"></span></h3>
 <div data-slot="rates"></div>
+</section>
+
+<section id="study" class="block js-only study-only study-block">
+<div class="study-intro"><div class="eyebrow">HOLIDAY STUDY</div><h2>휴일 공부 · <span class="sel-date"></span></h2></div>
+<div data-slot="study"></div>
 </section>
 
 <section id="ch-sources" class="block js-only">
@@ -394,10 +427,13 @@ html:not(.no-js) #data{display:none}
 
   // 1) 원본 브리핑의 각 부분을 챕터 칸으로 옮김
   arts.forEach(function(a){
+    var study=a.classList.contains('study');
     var basis=a.querySelector('.basis');
     if(basis){basis.classList.add('part');basis.setAttribute('data-ch','basis');}
     [].slice.call(a.querySelectorAll('.part[data-ch]')).forEach(function(p){
-      var slot=$('[data-slot="'+p.getAttribute('data-ch')+'"]');
+      var ch=p.getAttribute('data-ch');
+      if(study&&ch!=='sources')ch='study';
+      var slot=$('[data-slot="'+ch+'"]');
       if(!slot)return;
       p.setAttribute('data-date',a.id);slot.appendChild(p);
     });
@@ -421,7 +457,8 @@ html:not(.no-js) #data{display:none}
   // 3) 표지 정보
   $('#m-latest').textContent=fmt(arts[0].id);
   $('#m-range').textContent=fmt(arts[arts.length-1].id)+' ~ '+fmt(arts[0].id);
-  $('#m-count').textContent=arts.length+'개 (최대 10개)';
+  var nStudy=arts.filter(function(a){return a.classList.contains('study');}).length;
+  $('#m-count').textContent='평일 '+(arts.length-nStudy)+'개 · 휴일 '+nStudy+'개';
 
   // 4) 지표 카드: 표의 data-k 값으로 시계열을 만들어 표시
   var LABEL={spx:'S&P500',ndx:'나스닥',kospi:'코스피',kosdaq:'코스닥',usdkrw:'원/달러',jpykrw:'원/100엔',ust10y:'미 10년물',ktb3y:'국고채 3년','seoul-sale':'서울 매매','gyeonggi-sale':'경기 매매','incheon-sale':'인천 매매','seoul-jeonse':'서울 전세'};
@@ -459,12 +496,14 @@ html:not(.no-js) #data{display:none}
   // 5) 날짜 탭
   var tabs=$('#date-tabs');
   var btns=arts.map(function(a){
-    var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=fmt(a.id);
+    var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');
+    var st=a.classList.contains('study');b.textContent=fmt(a.id)+(st?' 공부':'');if(st)b.className='study-tab';
     b.addEventListener('click',function(){show(a.id,true);});tabs.appendChild(b);return b;
   });
   var slots=$$('[data-slot]').filter(function(s){return !/^trend-/.test(s.getAttribute('data-slot'));});
   function show(id,push){
     var i=0;arts.forEach(function(a,j){if(a.id===id)i=j;});id=arts[i].id;
+    document.body.classList.toggle('mode-study',arts[i].classList.contains('study'));
     $$('.part[data-date]').forEach(function(p){p.hidden=p.getAttribute('data-date')!==id;});
     slots.forEach(function(s){
       var has=[].slice.call(s.children).some(function(c){return c.classList.contains('part')&&!c.hidden;});
